@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChurnGuard | Telecom Churn Predictor</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav>
+        <div class="logo">
+            <i data-lucide="shield-check"></i>
+            <span>ChurnGuard AI</span>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="nav-link active" data-section="predictor">Predictor</a>
+            <a href="#" class="nav-link" data-section="dashboard">Dashboard</a>
+            <a href="#" class="nav-link" data-section="insights">Insights</a>
+        </div>
+    </nav>
+
+    <main>
+        
+        <section id="predictor-section" class="tab-content active">
+            <section class="hero">
+                <h1>Predict Customer Churn with <span class="gradient-text">Precision</span></h1>
+                <p>Empower your retention strategy with our advanced machine learning model. Identify at-risk customers
+                    before they leave.</p>
+            </section>
+
+            <div class="app-container">
+                <div class="form-card card">
+                    <h2>Customer Details</h2>
+                    <form id="prediction-form">
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label>Gender</label>
+                                <select name="gender" required>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Senior Citizen</label>
+                                <select name="SeniorCitizen" required>
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Tenure (Months)</label>
+                                <input type="number" name="tenure" min="0" max="100" value="1" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Monthly Charges ($)</label>
+                                <input type="number" step="0.01" name="MonthlyCharges" value="50.00" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Internet Service</label>
+                                <select name="InternetService" required>
+                                    <option value="Fiber optic">Fiber optic</option>
+                                    <option value="DSL">DSL</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Contract</label>
+                                <select name="Contract" required>
+                                    <option value="Month-to-month">Month-to-month</option>
+                                    <option value="One year">One year</option>
+                                    <option value="Two year">Two year</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Payment Method</label>
+                                <select name="PaymentMethod" required>
+                                    <option value="Electronic check">Electronic check</option>
+                                    <option value="Mailed check">Mailed check</option>
+                                    <option value="Bank transfer (automatic)">Bank transfer (auto)</option>
+                                    <option value="Credit card (automatic)">Credit card (auto)</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <label>Paperless Billing</label>
+                                <select name="PaperlessBilling" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <input type="hidden" name="Partner" value="No">
+                            <input type="hidden" name="Dependents" value="No">
+                            <input type="hidden" name="PhoneService" value="Yes">
+                            <input type="hidden" name="MultipleLines" value="No">
+                            <input type="hidden" name="OnlineSecurity" value="No">
+                            <input type="hidden" name="OnlineBackup" value="No">
+                            <input type="hidden" name="DeviceProtection" value="No">
+                            <input type="hidden" name="TechSupport" value="No">
+                            <input type="hidden" name="StreamingTV" value="No">
+                            <input type="hidden" name="StreamingMovies" value="No">
+                            <input type="hidden" name="TotalCharges" id="total-charges-hidden" value="50.0">
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <span>Analyze Risk</span>
+                            <i data-lucide="zap"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="result-card card hidden" id="result-card">
+                    <h2>Analysis Result</h2>
+                    <div class="result-content">
+                        <div class="gauge-container">
+                            <svg class="gauge" viewBox="0 0 100 50">
+                                <path class="gauge-bg" d="M10,50 A40,40 0 0,1 90,50" />
+                                <path id="gauge-fill" class="gauge-fill" d="M10,50 A40,40 0 0,1 10,50" />
+                            </svg>
+                            <div class="probability-value" id="probability-text">0%</div>
+                        </div>
+                        <div class="prediction-alert" id="churn-alert">
+                            <div class="alert-header">
+                                <i data-lucide="info"></i>
+                                <span id="risk-level-badge">Risk Level</span>
+                            </div>
+                            <p id="prediction-msg">Predicting...</p>
+                        </div>
+                        <div class="metrics-grid">
+                            <div class="metric">
+                                <span class="label">Churn Prediction</span>
+                                <span class="value" id="churn-val">-</span>
+                            </div>
+                            <div class="metric">
+                                <span class="label">Retention Priority</span>
+                                <span class="value" id="priority-val">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="tab-content">
+            <div class="section-header">
+                <h2>Business Dashboard</h2>
+                <p>Real-time metrics from the Telco Customer Dataset</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card card">
+                    <i data-lucide="users"></i>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Customers</span>
+                        <span class="stat-value">7,043</span>
+                    </div>
+                </div>
+                <div class="stat-card card">
+                    <i data-lucide="user-minus" class="danger"></i>
+                    <div class="stat-info">
+                        <span class="stat-label">Churn Rate</span>
+                        <span class="stat-value">26.5%</span>
+                    </div>
+                </div>
+                <div class="stat-card card">
+                    <i data-lucide="dollar-sign" class="success"></i>
+                    <div class="stat-info">
+                        <span class="stat-label">Avg. Revenue</span>
+                        <span class="stat-value">$64.76</span>
+                    </div>
+                </div>
+                <div class="stat-card card">
+                    <i data-lucide="calendar"></i>
+                    <div class="stat-info">
+                        <span class="stat-label">Avg. Tenure</span>
+                        <span class="stat-value">32.4 Mo</span>
+                    </div>
+                </div>
+            </div>
+            <div class="chart-container card">
+                <h3>Overall Churn Distribution</h3>
+                <img src="eda_plots/overall_churn_rate.png" alt="Overall Churn Rate" class="dashboard-img">
+            </div>
+        </section>
+
+        <!-- Insights Section -->
+        <section id="insights-section" class="tab-content">
+            <div class="section-header">
+                <h2>Key Predictor Insights</h2>
+                <p>Deep dive into the factors driving customer churn</p>
+            </div>
+            <div class="insights-grid">
+                <div class="insight-item card">
+                    <h3>1. Feature Importance</h3>
+                    <p>What determines churn the most?</p>
+                    <img src="eda_plots/feature_importance.png" alt="Feature Importance">
+                </div>
+                <div class="insight-item card">
+                    <h3>2. Contract Impact</h3>
+                    <p>Month-to-month contracts carry 4x higher risk.</p>
+                    <img src="eda_plots/churn_by_Contract.png" alt="Churn by Contract">
+                </div>
+                <div class="insight-item card">
+                    <h3>3. Service Quality</h3>
+                    <p>Fiber optic churn rates are unexpectedly high.</p>
+                    <img src="eda_plots/churn_by_InternetService.png" alt="Churn by Internet Service">
+                </div>
+                <div class="insight-item card">
+                    <h3>4. Tenure & Loyalty</h3>
+                    <p>Early-stage customers (0-12 months) are most vulnerable.</p>
+                    <img src="eda_plots/churn_tenure_hist.png" alt="Tenure Histogram">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>

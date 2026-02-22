@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Dashboard - Twitter Sentiment Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="nav-brand">Twitter Sentiment Analysis</div>
+            <div class="nav-links">
+                <a href="index.html">Analyzer</a>
+                <a href="dashboard.html" class="active">Dashboard</a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <h1 class="dashboard-title">Sentiment Analytics Dashboard</h1>
+            <p class="dashboard-subtitle">Real-time sentiment trends from analyzed tweets</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon positive">😊</div>
+                    <div class="stat-details">
+                        <span class="stat-label">Positive Tweets</span>
+                        <span class="stat-value" id="positiveCount">0</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon neutral">😐</div>
+                    <div class="stat-details">
+                        <span class="stat-label">Neutral Tweets</span>
+                        <span class="stat-value" id="neutralCount">0</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon negative">😞</div>
+                    <div class="stat-details">
+                        <span class="stat-label">Negative Tweets</span>
+                        <span class="stat-value" id="negativeCount">0</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon total">📊</div>
+                    <div class="stat-details">
+                        <span class="stat-label">Total Analyzed</span>
+                        <span class="stat-value" id="totalCount">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3>Sentiment Trends Over Time</h3>
+                <canvas id="sentimentChart"></canvas>
+            </div>
+
+            <div class="recent-analyses">
+                <h3>Recent Analyses</h3>
+                <div class="table-container">
+                    <table id="recentTable">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Sentiment</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentTableBody">
+                            <tr>
+                                <td colspan="2" class="loading-message">Loading data...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

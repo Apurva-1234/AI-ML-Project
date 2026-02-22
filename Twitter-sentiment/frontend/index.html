@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Sentiment Analysis</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="nav-brand">Twitter Sentiment Analysis</div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Analyzer</a>
+                <a href="dashboard.html">Dashboard</a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="card analyzer-card">
+                <h2>Analyze Tweet Sentiment</h2>
+                <p class="subtitle">Enter a tweet to analyze its sentiment (Positive, Negative, or Neutral)</p>
+                
+                <div class="input-group">
+                    <textarea id="tweetInput" placeholder="Enter your tweet here... (max 500 characters)"></textarea>
+                    <div class="char-counter"><span id="charCount">0</span>/500</div>
+                </div>
+
+                <button onclick="predictSentiment()" id="analyzeBtn">
+                    <span class="btn-text">Analyze Sentiment</span>
+                    <span class="btn-loader"></span>
+                </button>
+
+                <div id="result" class="result-card hidden">
+                    <h3>Analysis Result</h3>
+                    <div id="resultContent"></div>
+                </div>
+            </div>
+
+            
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Environment
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Logs
+*.log
+app.log
+backend/app.log
+
+# Data & Models
+data/
+model/trained_model.sav
+model/vectorizer.pkl
+ml/trained_model.sav
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+~$*.docx
